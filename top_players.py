@@ -38,5 +38,4 @@ def top_players():
                     var.SCREEN_CHOICE = 1
 
         pygame.display.flip()
-
         var.CLOCK.tick(var.FPS)

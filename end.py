@@ -11,8 +11,7 @@ def end():
     main_menu = var.FONT_40.render('Main menu', False, var.COLOR_OF_WORDS)
     main_menu_rect = main_menu.get_rect()
     main_menu_rect.center = (var.WIDTH / 2, 400)
-    rect_position_y = new_game_rect.top - 5
-    frame_of_choice = pygame.Rect(new_game_rect.left - 5, rect_position_y, new_game_rect.width + 10, new_game_rect.height + 10)
+    frame_of_choice = pygame.Rect(new_game_rect.left - 5, new_game_rect.top - 5, new_game_rect.width + 10, new_game_rect.height + 10)
 
     lost = var.FONT_40.render('Your score:' + str(var.SCORE), False, var.COLOR_OF_WORDS)
     lost_rect = lost.get_rect()
@@ -25,11 +24,11 @@ def end():
         if frame_of_choice.center == new_game_rect.center:
             new_game = var.FONT_40.render('New game', False, var.REV_COLOR_OF_WORDS)
             main_menu = var.FONT_40.render('Main menu', False, var.COLOR_OF_WORDS)
-            frame_of_choice = pygame.Rect(new_game_rect.left - 5, rect_position_y, new_game_rect.width + 10, new_game_rect.height + 10)
+            frame_of_choice = pygame.Rect(new_game_rect.left - 5, new_game_rect.top - 5, new_game_rect.width + 10, new_game_rect.height + 10)
         elif frame_of_choice.center == main_menu_rect.center:
             new_game = var.FONT_40.render('New game', False, var.COLOR_OF_WORDS)
             main_menu = var.FONT_40.render('Main menu', False, var.REV_COLOR_OF_WORDS)
-            frame_of_choice = pygame.Rect(main_menu_rect.left - 5, rect_position_y, main_menu_rect.width + 10, main_menu_rect.height + 10)
+            frame_of_choice = pygame.Rect(main_menu_rect.left - 5, main_menu_rect.top - 5, main_menu_rect.width + 10, main_menu_rect.height + 10)
 
         var.SCREEN.blit(lost, (lost_rect.left, lost_rect.top))
         pygame.draw.rect(var.SCREEN, var.COLOR_OF_WORDS, frame_of_choice)
@@ -40,10 +39,10 @@ def end():
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_DOWN and rect_position_y < main_menu_rect.top - 5:
-                    rect_position_y += 100
-                elif event.key == pygame.K_UP and rect_position_y > new_game_rect.top + 5:
-                    rect_position_y -= 100
+                if event.key == pygame.K_DOWN and frame_of_choice.top < main_menu_rect.top - 5:
+                    frame_of_choice.y += 100
+                elif event.key == pygame.K_UP and frame_of_choice.top > new_game_rect.top + 5:
+                    frame_of_choice.y -= 100
                 elif event.key == pygame.K_RETURN:
                     if frame_of_choice.center == main_menu_rect.center:
                         var.CHARACTER.rect.centerx = var.SCREEN_RECT.centerx + 1
@@ -77,3 +76,4 @@ def end():
                         var.SCREEN_CHOICE = 2
 
         pygame.display.flip()
+        var.CLOCK.tick(var.FPS)

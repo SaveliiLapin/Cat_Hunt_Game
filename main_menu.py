@@ -20,8 +20,7 @@ def main_menu():
     select_rect = select.get_rect()
     select_rect.center = (var.WIDTH / 2, 500)
 
-    rect_position_y = start_rect.top - 5
-    frame_of_choice = pygame.Rect(start_rect.left - 5, rect_position_y, start_rect.width + 10, start_rect.height + 10)
+    frame_of_choice = pygame.Rect(start_rect.left - 5, start_rect.top - 5, start_rect.width + 10, start_rect.height + 10)
 
     while var.IS_MAIN:
         var.SCREEN.fill(var.REV_COLOR_OF_WORDS)
@@ -31,17 +30,17 @@ def main_menu():
             start = var.FONT_40.render('Start', False, var.REV_COLOR_OF_WORDS)
             top_players = var.FONT_40.render('Top players', False, var.COLOR_OF_WORDS)
             exitt = var.FONT_40.render('Exit', False, var.COLOR_OF_WORDS)
-            frame_of_choice = pygame.Rect(start_rect.left - 5, rect_position_y, start_rect.width + 10, start_rect.height + 10)
+            frame_of_choice = pygame.Rect(start_rect.left - 5, start_rect.top - 5, start_rect.width + 10, start_rect.height + 10)
         elif frame_of_choice.center == top_players_rect.center:
             start = var.FONT_40.render('Start', False, var.COLOR_OF_WORDS)
             top_players = var.FONT_40.render('Top players', False, var.REV_COLOR_OF_WORDS)
             exitt = var.FONT_40.render('Exit', False, var.COLOR_OF_WORDS)
-            frame_of_choice = pygame.Rect(top_players_rect.left - 5, rect_position_y, top_players_rect.width + 10, top_players_rect.height + 10)
+            frame_of_choice = pygame.Rect(top_players_rect.left - 5, top_players_rect.top - 5, top_players_rect.width + 10, top_players_rect.height + 10)
         else:
             start = var.FONT_40.render('Start', False, var.COLOR_OF_WORDS)
             top_players = var.FONT_40.render('Top players', False, var.COLOR_OF_WORDS)
             exitt = var.FONT_40.render('Exit', False, var.REV_COLOR_OF_WORDS)
-            frame_of_choice = pygame.Rect(exitt_rect.left - 5, rect_position_y, exitt_rect.width + 10, exitt_rect.height + 10)
+            frame_of_choice = pygame.Rect(exitt_rect.left - 5, exitt_rect.top - 5, exitt_rect.width + 10, exitt_rect.height + 10)
 
         pygame.draw.rect(var.SCREEN, var.COLOR_OF_WORDS, frame_of_choice)
         var.SCREEN.blit(start, (start_rect.left, start_rect.top))
@@ -53,10 +52,10 @@ def main_menu():
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_DOWN and rect_position_y < exitt_rect.top - 5:
-                    rect_position_y += 100
-                elif event.key == pygame.K_UP and rect_position_y > start_rect.top + 5:
-                    rect_position_y -= 100
+                if event.key == pygame.K_DOWN and frame_of_choice.top < exitt_rect.top - 5:
+                    frame_of_choice.top += 100
+                elif event.key == pygame.K_UP and frame_of_choice.top > start_rect.top + 5:
+                    frame_of_choice.top -= 100
                 elif event.key == pygame.K_RETURN:
                     if frame_of_choice.center == exitt_rect.center:
                         sys.exit()
@@ -70,3 +69,4 @@ def main_menu():
                         var.SCREEN_CHOICE = 2
 
         pygame.display.flip()
+        var.CLOCK.tick(var.FPS)
