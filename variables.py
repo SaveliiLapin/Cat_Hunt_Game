@@ -32,7 +32,7 @@ SCREEN_CHOICE = 0
 # 5 - конец игры
 # 6 - топ игроков
 
-ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 NICKNAME = str()
 
 FONT_18 = pygame.font.Font('assets/2.ttf', 18)
@@ -53,9 +53,10 @@ NAME_OF_GAME = FONT_100.render('CAT HUNT', False, COLOR_OF_WORDS)
 NAME_OF_GAME_RECT = NAME_OF_GAME.get_rect()
 NAME_OF_GAME_RECT.center = (WIDTH / 2, 100)
 
-CHARACTER = ch.Character(SCREEN_RECT)
+CHARACTER = ch.Character()
 BULLETS = Group()
 ENEMIES = Group()
+DEADENEMIES = Group()
 
 SCORE = 0
 TIME_LEFT = 60
