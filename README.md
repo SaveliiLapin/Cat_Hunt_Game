@@ -1,4 +1,4 @@
-# Cat_Hunt_Game
+# Cat Hunt Game
 ## What is it?
 This is my first game made on Python using Pygame, I made it to get right to teach children. Honestly, it's my second version of game, my first one was too bad, so i remade it :)
 ## Requirments
